@@ -1,23 +1,16 @@
-name: build oses
+name: Build Debian
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 1 * *"
-  push:
-    branches:
-      - master
-    paths:
-      - oses/**
 jobs:
   push:
-    name: "yolks:${{ matrix.oses }}"
+    name: "indra87g:debian-custom"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        oses:
-          - alpine
-          - debian
+    #  matrix:
+    #    oses:
+     #     - alpine
+      #    - debian
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3
@@ -33,9 +26,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./oses/${{ matrix.oses }}
-          file: ./oses/${{ matrix.oses }}/Dockerfile
+          context: ./
+          file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/pterodactyl/yolks:${{ matrix.oses }}
+            ghcr.io/indra87g:debian-custom
