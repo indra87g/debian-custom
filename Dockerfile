@@ -14,10 +14,8 @@ RUN apt update  && apt install -y --no-install-recommends \
     bash \
     git \
     build-essential \
-    gdb \
-    python3 \
-    python3-pip \
-    python3-venv \
+	gcc \
+    nodejs \
     sqlite3 \
     libsqlite3-dev \
     unzip \
