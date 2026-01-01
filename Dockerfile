@@ -8,8 +8,7 @@ ENV USER=container
 ENV HOME=/home/container
 
 # Install base dependencies
-RUN apt update \
- && apt install -y --no-install-recommends \
+RUN apt update  && apt install -y --no-install-recommends \
     ca-certificates \
     curl \
     bash \
@@ -21,6 +20,7 @@ RUN apt update \
     python3-venv \
     sqlite3 \
     libsqlite3-dev \
+    unzip \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
