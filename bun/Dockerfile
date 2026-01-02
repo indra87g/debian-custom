@@ -15,8 +15,8 @@ RUN apt update  && apt install -y --no-install-recommends \
     git \
     build-essential \
 	gcc \
-    nodejs \
     sqlite3 \
+	net-tools \
     libsqlite3-dev \
     unzip \
  && apt clean \
