@@ -1,4 +1,4 @@
-name: Build Debian
+name: Build Debian Custom (BunJS)
 on:
   workflow_dispatch:
 jobs:
@@ -22,9 +22,9 @@ jobs:
           password: ${{ secrets.GH_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./
-          file: ./Dockerfile
+          context: ./bun/
+          file: ./bun/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/indra87g/debian-custom:latest
+            ghcr.io/indra87g/debian-custom:bun
