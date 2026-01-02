@@ -22,12 +22,13 @@ RUN apt update  && apt install -y --no-install-recommends \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
- # Install Bun
+# Install Bun
 RUN curl -fsSL https://bun.sh/install | bash \
- && cp -r /root/.bun /usr/local/.bun \
+ && export BUN_INSTALL="${BUN_INSTALL:-/root/.bun}" \
+ && cp -r "$BUN_INSTALL" /usr/local/.bun \
  && ln -sf /usr/local/.bun/bin/bun /usr/local/bin/bun \
  && chmod -R a+rX /usr/local/.bun \
- && bun --version
+ && /usr/local/.bun/bin/bun --version
 
 # Create non-root user
 RUN useradd -m -d /home/container -s /bin/bash container
