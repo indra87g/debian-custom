@@ -29,9 +29,13 @@ USER container
 WORKDIR /home/container
 
 # Install Bun
-RUN curl -fsSL https://bun.sh/install | bash
+RUN curl -fsSL https://bun.sh/install | bash \
+ && cp -r /root/.bun /usr/local/.bun \
+ && ln -sf /usr/local/.bun/bin/bun /usr/local/bin/bun \
+ && chmod -R a+rX /usr/local/.bun \
+ && bun --version
 
-ENV PATH="/home/container/.bun/bin:$PATH"
+ENV PATH="/usr/local/.bun/bin:/home/container/.bun/bin:$PATH"
 
 # Copy entrypoint
 COPY --chown=container:container ./entrypoint.sh /entrypoint.sh
