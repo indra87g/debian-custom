@@ -1,6 +1,6 @@
 FROM --platform=$TARGETOS/$TARGETARCH debian:bookworm
 
-LABEL org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
+LABEL org.opencontainers.image.source="https://github.com/indra87g/debian-custom"
 LABEL org.opencontainers.image.licenses=MIT
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -16,7 +16,7 @@ RUN apt update  && apt install -y --no-install-recommends \
     build-essential \
 	gcc \
     sqlite3 \
-	net-tools \
+	iproute2 \
     libsqlite3-dev \
     unzip \
  && apt clean \
